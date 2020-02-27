@@ -3,7 +3,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 
 namespace Auto_Close_Doors {
-    [BepInPlugin(UUID, "Auto-Close-Doors Mod", "1.0.0.0")]
+    [BepInPlugin(UUID, "Auto-Close-Doors Mod", "1.1.0.0")]
     public class AutoCloseDoorsMod : BaseUnityPlugin {
         private const string UUID = "com.autoCloseDoors";
         private static ManualLogSource logSource;
