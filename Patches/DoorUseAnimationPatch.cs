@@ -13,6 +13,7 @@ namespace Auto_Close_Doors.Patches {
         [HarmonyPostfix]
         public static void Postfix(ref DoorUseAnimation __instance, ref GameObject user) {
             if (__instance.CurrentState) return;
+            if (!__instance.gameObject.name.Contains("Door")) return;
             var instance = __instance;
             var o = user;
             new Routine(instance, delegate {
