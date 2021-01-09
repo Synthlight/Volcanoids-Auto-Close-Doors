@@ -1,20 +1,21 @@
 ﻿using System.Linq;
+using Base_Mod;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Auto_Close_Doors {
     [UsedImplicitly]
-    public class Plugin : GameMod {
-        private static readonly GUID COPPER_DOOR_GUID = GUID.Parse("2f37c2f7701fb8b44abefdcd03681b8b");
+    public class Plugin : BaseGameMod {
+        protected override      string ModName { get; } = "Auto-Close-Doors";
+        private static readonly GUID   COPPER_DOOR_GUID = GUID.Parse("2f37c2f7701fb8b44abefdcd03681b8b");
 
-        public override void Load() {
-            Debug.Log("Auto-Close-Doors loaded.");
-
+        protected override void Init() {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         public override void Unload() {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
