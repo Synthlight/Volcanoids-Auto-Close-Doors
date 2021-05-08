@@ -7,24 +7,14 @@ using UnityEngine.SceneManagement;
 namespace Auto_Close_Doors {
     [UsedImplicitly]
     public class Plugin : BaseGameMod {
-        protected override      string ModName { get; } = "Auto-Close-Doors";
+        protected override      string ModName => "Auto Close Doors";
         private static readonly GUID   COPPER_DOOR_GUID = GUID.Parse("2f37c2f7701fb8b44abefdcd03681b8b");
 
-        protected override void Init() {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        public override void Unload() {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
-            if (scene.name != "Island") return;
-
+        protected override void OnIslandSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
             var doorItemDef = GameResources.Instance.Items.First(item => item.AssetId == COPPER_DOOR_GUID);
 
             // Add to door prefabs.
-            if (doorItemDef?.Prefabs != null) {
+            if (doorItemDef.Prefabs != null) {
                 foreach (var prefab in doorItemDef.Prefabs) {
                     if (!prefab.HasComponent<AutoCloseComponent>() && prefab.HasComponent<DoorUseAnimation>()) {
                         prefab.AddComponent<AutoCloseComponent>();
