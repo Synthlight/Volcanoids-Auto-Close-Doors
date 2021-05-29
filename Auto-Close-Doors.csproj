@@ -12,7 +12,9 @@
 		<DebugType>full</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Base-Mod\Base-Mod.csproj" />
+		<ProjectReference Include="..\Base-Mod\Base-Mod.csproj">
+			<Private>false</Private>
+		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
@@ -40,7 +42,12 @@
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
+	<ItemGroup>
+		<None Update=".manifest.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="call $(ProjectDir)..\Base-Mod\Post-Build.bat &quot;$(TargetName)&quot; &quot;$(OutDir)&quot;" />
+		<Exec Command="call $(ProjectDir)..\Base-Mod\Post-Build.bat &quot;$(TargetName)&quot; &quot;$(OutDir)&quot;"/>
 	</Target>
 </Project>
