@@ -1,4 +1,7 @@
 {
     "LoadGroup": 0,
-    "Version": "1.3"
+    "Version": "1.3",
+    "UniqueModId": "Auto-Close-Doors",
+    "Title": "Auto Close Doors",
+    "MultiplayerMode": 2
 }
